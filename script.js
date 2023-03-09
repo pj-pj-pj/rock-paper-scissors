@@ -1,8 +1,6 @@
-const choices = ['Rock', 'Paper', 'Scissors'];
-
-function getComputerChoice(choices) {
-    
-    return choices[Math.floor(Math.random() * (choices.length))];
+function getChoice() {
+  const	choices = ['Rock', 'Paper', 'Scissors'];
+  return choices[Math.floor(Math.random() * (choices.length))];
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -10,48 +8,44 @@ function playRound(playerSelection, computerSelection) {
     let victory = `You won! ${playerSelection} beats ${computerSelection}`;
     let defeat = `You lose! ${computerSelection} beats ${playerSelection}`;
 
-    let player = playerSelection.toLowerCase();
-    let computer = computerSelection.toLowerCase();
-
-    if (player == computer) {
+    if (playerSelection == computerSelection) {
         return tie;
     }
 
-    if (player == 'rock') {
-        if (computer == 'scissors') {
+    if (playerSelection == 'Rock') {
+        if (computerSelection == 'Scissors') {
             return victory;
-        } else if (computer == 'paper') {
+        } else if (computerSelection == 'Paper') {
             return defeat;
         }
     }
 
-    if (player == 'paper') {
-        if (computer == 'rock') {
+    if (playerSelection == 'Paper') {
+        if (computerSelection == 'Rock') {
             return victory;
-        } else if (computer == 'scissors') {
+        } else if (computerSelection == 'Scissors') {
             return defeat;
         }
     }
 
-    if (player == 'scissors') {
-        if (computer == 'paper') {
+    if (playerSelection == 'Scissors') {
+        if (computerSelection == 'Paper') {
             return victory;
-        } else if (computer == 'rock') {
+        } else if (computerSelection == 'Rock') {
             return defeat;
         }
     }
 }
 
 function game() {
-    const computerSelection = getComputerChoice(choices);
-
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt("Rock, paper or scissors? ");
-        console.log(playRound(playerSelection, computerSelection));
-    }
+	const result = document.querySelector('.results');
+	result.innerText = playRound(this.innerText, getChoice())
+	
 }
 
-game();
+const buttons = document.querySelectorAll('.choice');
+
+buttons.forEach(choice => {choice.addEventListener('click', game)});	
 
 
 
