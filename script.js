@@ -1,26 +1,36 @@
-function getChoice() {
+let playerScore = 0;
+let computerScore = 0;
+
+const rpsButtons = Array.from(document.querySelectorAll('.choice'));
+
+rpsButtons.forEach(choice => {choice.addEventListener('click', game)});	
+
+
+function getComputerChoice() {
   return Math.floor(Math.random() * 3);
 }
 
-function playRound(player, computer) {
-  const result = Math.abs(computer - player);
-	const bigger = Math.max(player, computer);
-	const smaller = Math.min(player, computer)
+
+function determineWinner(player, computer) {
+  const resultNumber = Math.abs(computer - player);
+	const bigNumber = Math.max(player, computer);
+	const smallNumber = Math.min(player, computer)
 
 	let winner = " ";
 
-	switch (result) {
+	switch (resultNumber) {
 		case 0:
 			return "tie";
 		case 1:
-			winner = (bigger == player) ? "player" : "computer";
+			winner = (bigNumber == player) ? "player" : "computer";
 		default:
-			winner = (smaller == player) ? "player" : "computer";
+			winner = (smallNumber == player) ? "player" : "computer";
 	}
 
 	addPoint(winner);
 	return winner;
 }
+
 
 function addPoint(winner) {
 	if (winner == "player") {
@@ -32,22 +42,24 @@ function addPoint(winner) {
 	}
 }
 
+
 function updateScore() {
 	document.getElementById('player-score').innerText = playerScore;
 	document.getElementById('computer-score').innerText = computerScore;
 }
 
+
 function game() {
 	const selection = ['Rock', 'Paper', 'Scissors'];
 
-	const playerChoice = buttons.indexOf(this);
-	const computerChoice = getChoice();
+	const playerChoice = rpsButtons.indexOf(this);
+	const computerChoice = getComputerChoice();
+	const result = determineWinner(playerChoice, computerChoice);
 
-	const winner = playRound(playerChoice, computerChoice);
 	const winnerHolder = document.querySelector('#winner');
 	const resultholder = document.querySelector('#roundResult');
 
-	winnerHolder.innerText = " "; //clears winnerHolder when 
+	winnerHolder.innerText = " ";
 
 	updateScore();
 
@@ -65,10 +77,10 @@ function game() {
 		return;
 	}
 
-	if (winner == "player") {
+	if (result == "player") {
 		resultholder.innerText = `You won! ${selection[playerChoice]} 
 															beats ${selection[computerChoice]}`;
-	} else if (winner == "computer") {
+	} else if (result == "computer") {
 		resultholder.innerText = `You lost! ${selection[playerChoice]} 
 															beats ${selection[computerChoice]}`;
 	} else {
@@ -76,12 +88,8 @@ function game() {
 	}
 }
 
-let playerScore = 0;
-let computerScore = 0;
 
-const buttons = Array.from(document.querySelectorAll('.choice'));
 
-buttons.forEach(choice => {choice.addEventListener('click', game)});	
 
 
 
