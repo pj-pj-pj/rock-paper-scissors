@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock-Paper-Scissors</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock-Paper-Scissors</title>
 </head>
 <body>
-    <div class="header">
-      <h1>Rock, Paper or Scissors?</h1>
-    </div>
-    <div>
-      <button class="choice">Rock</button>
-      <button class="choice">Paper</button>
-      <button class="choice">Scissors</button>
-    </div>
-    <div class="results"> </div>
-    <script src="script.js"></script>
+  <div class="header">
+    <h1>Rock, Paper or Scissors?</h1>
+  </div>
+  <div>
+    <span><span>Player: </span> <span id="player-score">0</span></span>
+    <span><span>Computer: </span><span id="computer-score">0</span></span>
+  </div>
+  <div id="winner"> </div>
+  <div>
+    <button class="choice">Rock</button>
+    <button class="choice">Paper</button>
+    <button class="choice">Scissors</button>
+  </div>
+  <div id="roundResult"></div>
+  <script src="script.js"></script>
 </body>
 </html>
